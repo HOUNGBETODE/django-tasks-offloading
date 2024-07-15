@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  redis:
+    container_name: redis-broker
+    image: redis:7.0.11-alpine
+
+  django:
+    container_name: django-app
+    build:
+      context: ./dcelery
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./dcelery:/usr/src/app/
+    ports:
+      - 8001:8000
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  celery:
+    container_name: celery-worker
+    build:
+      context: ./dcelery
+    command: celery --app=dcelery worker -l INFO
+    volumes:
+      - ./dcelery:/usr/src/app/
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - django
+
+# https://www.youtube.com/watch?v=kWxYPq7Sc8A&list=PLOLrQ9Pn6caz-6WpcBYxV84g9gwptoN20&index=5 (scheduling tasks in django)
+# https://www.youtube.com/watch?v=jeE-k5dG8ug&list=PLOLrQ9Pn6caz-6WpcBYxV84g9gwptoN20&index=6 (django caches)

@@ -1,0 +1,40 @@
+<!-- this is the email template sent to user with the generated otp code -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code verification</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0;">
+
+    <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#f5f5f5">
+        <tr>
+            <td align="center" style="padding: 20px;">
+                <table cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.1);">
+                    <tr>
+                        <td style="text-align: center; padding: 30px;">
+                            <!-- the header -->
+                            <h1 style="color: #7A0B24;">EMAIL CHECKING</h1>
+                            <img src="https://afrinic.pythonanywhere.com/media/teplay-biz-green.png" alt="TePlay logo">
+                            <!-- the body -->
+                            <p style="color: #777;">Dear <span style="font-weight: bold; font-style: italic;">{{ name }}</span>,</p>
+                            <p style="color: #777;">The following code has been provided to you so as to verify your email and, by the way, activate your account.</p>
+                            <p style="color: #777; font-size: 30px;"><b style="color: #20B32A;">Code : </b> <span style="color: #000980;">{{ otp_code }}</span></p>
+                            <p style="color: #777;">It will only be available for 5 minutes.</p>
+                            <p style="color: #777;">So, go quickly submit it on the mobile app form.</p>
+                            <p style="color: #777; font-weight: bold;">Thanks for trusting us.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- the footer -->
+                        <td style="text-align: center; padding: 20px; background-color: #20B32A; border-radius: 0 0 10px 10px;">
+                            <p style="color: #fff; margin: 0;">You can contact us at <a href="mailto:play@teplay.net" style="text-decoration: none; color: #E01342;">play@teplay.net</a> for any support.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
